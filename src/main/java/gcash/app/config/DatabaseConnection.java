@@ -16,4 +16,42 @@ public class DatabaseConnection {
 
     private static final String DB_USER = dotenv.get("RDS_USERNAME");
     private static final String DB_PASSWORD = dotenv.get("RDS_PASSWORD");
+
+    private static final String URL = "jdbc:mysql://" + HOST + ":" + PORT + "/" + DATABASE_NAME;
+
+    private DatabaseConnection(){
+        //make constructor private to avoid instantiation.
+    }
+
+    public static Connection getConnection(){
+
+        try{
+            if (connection == null || connection.isClosed()){
+                Class.forName("com.mysql.cj.jdbc.Driver");
+                connection = DriverManager.getConnection(URL, DB_USER, DB_PASSWORD);
+            }
+
+        }
+        catch (ClassNotFoundException e){
+            System.out.println("Class not found error.");
+        }
+        catch (SQLException e){
+            System.out.println("Database error.");
+        }
+        return connection;
+    }
+
+    public static void closeConnection(){
+        try{
+            if(connection != null && !connection.isClosed()){
+                connection.close();
+            }
+        }
+       catch (SQLException e) {
+            System.out.println("Cant close db connection.");
+            throw new RuntimeException(e);
+        }
+    }
+
+
 }
