@@ -1,6 +1,5 @@
 package gcash.app.config;
 import io.github.cdimascio.dotenv.Dotenv;
-
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.SQLException;
@@ -17,17 +16,17 @@ public class DatabaseConnection {
     private static final String DB_USER = dotenv.get("RDS_USERNAME");
     private static final String DB_PASSWORD = dotenv.get("RDS_PASSWORD");
 
-    private static final String URL = "jdbc:mysql://" + HOST + ":" + PORT + "/" + DATABASE_NAME;
+    private static final String URL = "jdbc:postgresql://" + HOST + ":" + PORT + "/" + DATABASE_NAME;
 
+    //private constructor.
     private DatabaseConnection(){
-        //make constructor private to avoid instantiation.
     }
 
     public static Connection getConnection(){
 
         try{
             if (connection == null || connection.isClosed()){
-                Class.forName("com.mysql.cj.jdbc.Driver");
+                Class.forName("org.postgresql.Driver");
                 connection = DriverManager.getConnection(URL, DB_USER, DB_PASSWORD);
             }
 
@@ -36,7 +35,7 @@ public class DatabaseConnection {
             System.out.println("Class not found error.");
         }
         catch (SQLException e){
-            System.out.println("Database error.");
+            System.out.println("Db connection error.");
         }
         return connection;
     }

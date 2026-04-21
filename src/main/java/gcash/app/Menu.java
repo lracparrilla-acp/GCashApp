@@ -1,5 +1,5 @@
 package gcash.app;
-import static gcash.app.view.ConsoleReader.scanner;
+import static gcash.app.view.In.scanner;
 
 public class Menu {
 

@@ -8,8 +8,7 @@ enum TransactionTypes {
 
 public class Transactions {
     double amount;
-    String phoneNumber = Users.getPhoneNumber();
-    
+
 
 }
 

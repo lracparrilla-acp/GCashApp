@@ -3,58 +3,70 @@ import java.util.UUID;
 
 public class Users {
 
-    static UUID uuid = UUID.randomUUID();
-    static String phoneNumber;
-    static String firstName;
-    static String lastName;
-    static String email;
-    private String pin;
-    static String pinHash;
+    //fields
+    UUID uuid = UUID.randomUUID();
+    String phoneNumber;
+    String firstName;
+    String lastName;
+    String email;
+    char[] pinHash;
 
-    //constructor
-    public Users(UUID uuid, String email, String lastName, String firstName, String phoneNumber) {
-        Users.uuid = uuid;
-        Users.email = email;
-        Users.lastName = lastName;
-        Users.firstName = firstName;
-        Users.phoneNumber = phoneNumber;
+    public UUID getUuid() {
+        return uuid;
     }
 
-
-    public static String getEmail() {
-        return email;
+    public void setUuid(UUID uuid) {
+        this.uuid = uuid;
     }
 
-    public static void setEmail(String email) {
-        Users.email = email;
-    }
-
-    public static String getLastName() {
-        return lastName;
-    }
-
-    public static void setLastName(String lastName) {
-        Users.lastName = lastName;
-    }
-
-    public static String getFirstName() {
-        return firstName;
-    }
-
-    public static void setFirstName(String firstName) {
-        Users.firstName = firstName;
-    }
-
-    public static String getPhoneNumber() {
+    public String getPhoneNumber() {
         return phoneNumber;
     }
 
-    public static void setPhoneNumber(String phoneNumber) {
-        Users.phoneNumber = phoneNumber;
+    public void setPhoneNumber(String phoneNumber) {
+        this.phoneNumber = phoneNumber;
     }
 
-}
+    public String getFirstName() {
+        return firstName;
+    }
 
-class UserRegistration{
+    public void setFirstName(String firstName) {
+        this.firstName = firstName;
+    }
+
+    public String getLastName() {
+        return lastName;
+    }
+
+    public void setLastName(String lastName) {
+        this.lastName = lastName;
+    }
+
+    public String getEmail() {
+        return email;
+    }
+
+    public void setEmail(String email) {
+        this.email = email;
+    }
+
+    public char[] getPinHash() {
+        return pinHash;
+    }
+
+    public void setPinHash(String pinHash) {
+        this.pinHash = pinHash.toCharArray();
+    }
+
+    //constructor
+    public Users(UUID uuid, String phoneNumber, String firstName, String lastName, String email, String pinHash) {
+        this.uuid = uuid;
+        this.phoneNumber = phoneNumber;
+        this.firstName = firstName;
+        this.lastName = lastName;
+        this.email = email;
+        this.pinHash = pinHash.toCharArray();
+    }
 
 }
