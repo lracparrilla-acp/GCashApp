@@ -1,9 +1,10 @@
 package gcash.app.view;
 import gcash.app.repository.LoginUserDAO;
-import gcash.app.utils.security.PasswordHasher;
+
+import java.sql.SQLException;
 import java.util.Arrays;
 
-import static gcash.app.view.In.scanner;
+import static gcash.app.view.UserDashboardView.userDashboardView;
 
 public class AuthLoginView {
     static void loginView() {
@@ -18,8 +19,18 @@ public class AuthLoginView {
             LoginUserDAO dao = new LoginUserDAO();
 
             boolean isValid = dao.authenticateUser(phoneNumber, plainPin);
-            System.out.println("Login success: " + isValid);
 
+            if(!isValid){
+                System.out.println("Login failed. Check your number/pin");
+            }
+            else {
+                System.out.println("Login successful!");
+                userDashboardView(phoneNumber);
+
+            }
+
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
         } finally {
             Arrays.fill(pin, '\0');
             plainPin = null;

@@ -2,6 +2,8 @@ package gcash.app.view;
 
 import gcash.app.repository.RegisterUserDAO;
 import gcash.app.utils.security.PasswordHasher;
+
+import java.util.Arrays;
 import java.util.Scanner;
 import java.util.UUID;
 
@@ -39,11 +41,12 @@ public class RegisterView {
                 System.out.println("DO NOT FORGET YOUR PIN!");
                 System.out.println("DO NOT FORGET YOUR PIN!");
             } else {
-                System.out.println("✗ Registration failed. Phone number may already exist.");
+                System.out.println("Registration failed. Phone number may already exist.");
             }
 
         } finally {
             java.util.Arrays.fill(pin, '\0');
+            AuthLoginView.loginView();
         }
 
         System.exit(0);
@@ -62,7 +65,7 @@ public class RegisterView {
         }
 
         if (!input.matches("^9\\d{9}$")) {
-            System.out.println("\"Invalid phone number format. Must be 09xxxxxxxxx or +639xxxxxxxxx\"");
+            System.out.println("Phone number format must be 09xxxxxxxxx or +639xxxxxxxxx");
             readPhoneNumber();
         }
 
@@ -70,12 +73,13 @@ public class RegisterView {
     }
 
     static char[] readPin() {
+        java.io.Console console = System.console();
         System.out.print("Enter your 6-digit PIN: ");
         String input = scanner.nextLine().trim();
 
         if (input.length() != 6 || !input.matches("\\d{6}")) {
             System.out.println("Invalid PIN. Must be 6 digits.");
-            return readPin(); // Retry
+            return readPin();
         }
 
         return input.toCharArray();

@@ -11,6 +11,12 @@ public class Users {
     String email;
     char[] pinHash;
 
+    public Users(String firstName, String lastName, String email) {
+        this.firstName = firstName;
+        this.lastName = lastName;
+        this.email = email;
+    }
+
     public UUID getUuid() {
         return uuid;
     }
