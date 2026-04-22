@@ -1,9 +1,10 @@
-package gcash.app;
+package gcash.app.view;
+
 import static gcash.app.view.In.scanner;
 
-public class Menu {
+public class AuthMenuView {
+    public static void mainMenu() {
 
-    static void mainMenu() {
         int choice = 0;
 
         while (choice != 3) {
@@ -18,10 +19,10 @@ public class Menu {
 
                 switch (choice) {
                     case 1:
-                        System.out.println("You selected Option One");
+                        System.out.println("| ============== LOGIN ============== |\n");
                         break;
                     case 2:
-                        System.out.println("You selected Option Two");
+                        System.out.println("| ============ REGISTER ============= |\n");
                         break;
                     case 3:
                         System.out.println("Exiting program...");

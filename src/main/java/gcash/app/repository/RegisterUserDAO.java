@@ -25,6 +25,7 @@ public class RegisterUserDAO {
                 "    pin_hash\n" +
                 ")\n" +
                 "VALUES (?, ?, ?, ?, ?, ?)";
+
         try (PreparedStatement ps = connection.prepareStatement(sql)) {
 
             ps.setString(1, id);

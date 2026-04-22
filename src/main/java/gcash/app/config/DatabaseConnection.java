@@ -18,7 +18,7 @@ public class DatabaseConnection {
 
     private static final String URL = "jdbc:postgresql://" + HOST + ":" + PORT + "/" + DATABASE_NAME;
 
-    //private constructor.
+
     private DatabaseConnection(){
     }
 
