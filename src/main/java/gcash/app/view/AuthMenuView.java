@@ -19,10 +19,10 @@ public class AuthMenuView {
 
                 switch (choice) {
                     case 1:
-                        System.out.println("| ============== LOGIN ============== |\n");
+                        AuthLoginView.loginView();
                         break;
                     case 2:
-                        System.out.println("| ============ REGISTER ============= |\n");
+                        RegisterView.registerView();
                         break;
                     case 3:
                         System.out.println("Exiting program...");

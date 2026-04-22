@@ -9,9 +9,7 @@ public class Main {
 
         System.out.println("| ========== Mini DigiBank ========== |");
         System.out.println();
-//        scanner.nextLine();
         AuthMenuView.mainMenu();
 
     }
 }
-
