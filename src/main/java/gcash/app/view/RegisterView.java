@@ -2,13 +2,11 @@ package gcash.app.view;
 
 import gcash.app.repository.RegisterUserDAO;
 import gcash.app.utils.security.PasswordHasher;
-
-import java.util.Arrays;
-import java.util.Scanner;
 import java.util.UUID;
+import static gcash.app.view.In.scanner;
 
 public class RegisterView {
-    static Scanner scanner = new Scanner(System.in);
+
 
     static void registerView() {
         System.out.println("| ============ REGISTER ============ |");
@@ -66,6 +64,7 @@ public class RegisterView {
 
         if (!input.matches("^9\\d{9}$")) {
             System.out.println("Phone number format must be 09xxxxxxxxx or +639xxxxxxxxx");
+            scanner.nextLine();
             readPhoneNumber();
         }
 

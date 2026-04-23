@@ -4,6 +4,7 @@ import java.time.format.DateTimeFormatter;
 
 public class Balance {
 
+
     LocalDateTime nowTime = LocalDateTime.now();
     DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd hh:mm:ss");
     double amount;
@@ -26,4 +27,19 @@ public class Balance {
         this.nowTime = nowTime;
     }
 
+    public String getUpdatedAt() {
+        return updatedAt;
+    }
+
+    public double getAmount() {
+        return amount;
+    }
+
+    public DateTimeFormatter getFormatter() {
+        return formatter;
+    }
+
+    public LocalDateTime getNowTime() {
+        return nowTime;
+    }
 }

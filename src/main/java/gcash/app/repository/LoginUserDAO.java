@@ -1,5 +1,6 @@
 package gcash.app.repository;
 import gcash.app.config.DatabaseConnection;
+import gcash.app.view.ProgressBar;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import java.sql.*;
 
@@ -18,8 +19,11 @@ public class LoginUserDAO {
             try (ResultSet rs = stmt.executeQuery()) {
                 if (rs.next()) {
                     String storedHash = rs.getString("pin_hash");
+                    ProgressBar.progressBar();
                     return encoder.matches(plainPin, storedHash);
                 }
+            } catch (InterruptedException e) {
+                throw new RuntimeException(e);
             }
 
         } catch (SQLException e) {

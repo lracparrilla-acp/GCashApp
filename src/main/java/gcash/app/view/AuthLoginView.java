@@ -22,9 +22,10 @@ public class AuthLoginView {
 
             if(!isValid){
                 System.out.println("Login failed. Check your number/pin");
+                loginView();
             }
             else {
-                System.out.println("Login successful!");
+                System.out.println("\n\nLogin successful!\n");
                 userDashboardView(phoneNumber);
 
             }
