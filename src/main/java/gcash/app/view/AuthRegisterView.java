@@ -5,7 +5,7 @@ import gcash.app.utils.security.PasswordHasher;
 import java.util.UUID;
 import static gcash.app.view.In.scanner;
 
-public class RegisterView {
+public class AuthRegisterView {
 
 
     static void registerView() {
@@ -36,10 +36,9 @@ public class RegisterView {
                 System.out.println("\nRegistration successful!!");
                 System.out.println("Remember your number: " + phoneNumber);
                 System.out.println("DO NOT FORGET YOUR PIN!");
-                System.out.println("DO NOT FORGET YOUR PIN!");
-                System.out.println("DO NOT FORGET YOUR PIN!");
             } else {
                 System.out.println("Registration failed. Phone number may already exist.");
+                registerView();
             }
 
         } finally {

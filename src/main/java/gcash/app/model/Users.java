@@ -5,15 +5,19 @@ public class Users {
 
     //fields
     UUID uuid = UUID.randomUUID();
-    String phoneNumber;
-    String firstName;
-    String lastName;
-    String email;
-    char[] pinHash;
+    private String phoneNumber;
+    private String firstName;
+    private String lastName;
+    private String email;
+    private char[] pinHash;
 
     public Users(String firstName, String lastName) {
         this.firstName = firstName;
         this.lastName = lastName;
+    }
+
+    public Users() {
+
     }
 
     public UUID getUuid() {

@@ -26,8 +26,6 @@ public class DashboardUserDAO {
                 e.printStackTrace();
             }
         }
-
-        System.out.println("Failed(?)");
         return null;
     }
 

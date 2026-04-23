@@ -8,7 +8,7 @@ public class LoginUserDAO {
 
     public boolean authenticateUser(String phoneNumber, String plainPin) {
         final BCryptPasswordEncoder encoder = new BCryptPasswordEncoder();
-        String sql = "SELECT pin_hash FROM users WHERE phone_number = ?";
+        String sql = "SELECT phone_number, firstname, lastname, email, pin_hash FROM users WHERE phone_number = ?";
 
         try (Connection conn = DatabaseConnection.getConnection();
              PreparedStatement stmt = conn.prepareStatement(sql)) {

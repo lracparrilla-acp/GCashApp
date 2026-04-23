@@ -26,20 +26,24 @@ public class UserDashboardView {
                     "Enter your choice (1-5): ");
 
             try {
-                choice = Integer.parseInt(scanner.nextLine());
+                choice = Integer.parseInt(scanner.nextLine().trim());
 
                 switch (choice) {
                     case 1:
                         System.out.println("Cash-in");
+                        UserTransactionsView.userCashInView();
                         break;
                     case 2:
                         System.out.println("Send money");
+                        UserTransactionsView.userSendMoneyView();
                         break;
                     case 3:
                         System.out.println("View Balance");
+                        UserTransactionsView.userBalanceView();
                         break;
                     case 4:
                         System.out.println("View transaction history");
+                        UserTransactionsView.userTransactionHistoryView();
                         break;
                     case 5:
                         System.out.println("Exiting program...");

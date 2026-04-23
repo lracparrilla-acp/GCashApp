@@ -22,7 +22,7 @@ public class AuthMenuView {
                         AuthLoginView.loginView();
                         break;
                     case 2:
-                        RegisterView.registerView();
+                        AuthRegisterView.registerView();
                         break;
                     case 3:
                         System.out.println("Exiting program...");
