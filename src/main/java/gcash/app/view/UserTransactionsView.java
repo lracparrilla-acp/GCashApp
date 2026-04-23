@@ -1,10 +1,9 @@
 package gcash.app.view;
-
 import gcash.app.model.Users;
-
-import java.math.BigDecimal;
+import gcash.app.repository.CheckBalanceDAO;
 
 import static gcash.app.view.In.scanner;
+
 
 public class UserTransactionsView {
 
@@ -25,10 +24,8 @@ public class UserTransactionsView {
         //TODO: Implement In class/method to read inputs safely. Use Separate controller class
     }
 
-    public static double userBalanceView(){
-        double amount = 0;
-        System.out.println("Your current balance is" + amount);
-        return amount;
+    public static void userBalanceView(Users user){
+        UserBalanceView.checkBalance(user);
     }
 
     public static StringBuilder userTransactionHistoryView(){

@@ -1,45 +1,39 @@
 package gcash.app.model;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
+import java.util.UUID;
 
 public class Balance {
 
+    private final UUID uuid = new Users().getUuid();
+    private final LocalDateTime nowTime = LocalDateTime.now();
+    private final DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd hh:mm:ss");
 
-    LocalDateTime nowTime = LocalDateTime.now();
-    DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd hh:mm:ss");
-    double amount;
-    String updatedAt = nowTime.format(formatter);
+    public Balance(double amount) {
+        this.amount = amount;
+    }
+    private final String updatedAt = nowTime.format(formatter);
+    private double amount;
 
-    //setters
-    public void setUpdatedAt(String updatedAt) {
-        this.updatedAt = updatedAt;
+    //getters
+    public UUID getUuid() {
+        return uuid;
+    }
+    public LocalDateTime getNowTime() {
+        return nowTime;
+    }
+    public DateTimeFormatter getFormatter() {
+        return formatter;
+    }
+    public String getUpdatedAt() {
+        return updatedAt;
+    }
+    public double getAmount() {
+        return amount;
     }
 
     public void setAmount(double amount) {
         this.amount = amount;
     }
 
-    public void setFormatter(DateTimeFormatter formatter) {
-        this.formatter = formatter;
-    }
-
-    public void setNowTime(LocalDateTime nowTime) {
-        this.nowTime = nowTime;
-    }
-
-    public String getUpdatedAt() {
-        return updatedAt;
-    }
-
-    public double getAmount() {
-        return amount;
-    }
-
-    public DateTimeFormatter getFormatter() {
-        return formatter;
-    }
-
-    public LocalDateTime getNowTime() {
-        return nowTime;
-    }
 }

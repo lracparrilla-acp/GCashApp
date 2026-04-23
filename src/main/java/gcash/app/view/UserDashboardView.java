@@ -12,9 +12,6 @@ public class UserDashboardView {
         if (user != null) {
             System.out.println("Welcome " +  user.getLastName() + ", " + user.getFirstName());
         }
-        else{
-            System.out.println("Di ko alarm :D .");
-        }
         while (choice != 5) {
             System.out.print("1. Cash-in\n" +
                     "2. Send money\n" +
@@ -37,7 +34,7 @@ public class UserDashboardView {
                         break;
                     case 3:
                         System.out.println("View Balance");
-                        UserTransactionsView.userBalanceView();
+                        UserTransactionsView.userBalanceView(user);
                         break;
                     case 4:
                         System.out.println("View transaction history");

@@ -7,17 +7,9 @@ import java.util.UUID;
 
 public class RegisterUserDAO {
 
-    public boolean registerUser(
-            UUID id,
-            String phoneNumber,
-            String firstname,
-            String lastname,
-            String email,
-            String pinHash
+    public boolean registerUser(UUID id, String phoneNumber, String firstname, String lastname, String email, String pinHash
     ) {
-
-
-        String sql = "INSERT INTO users (\n" +
+        String userSql = "INSERT INTO users (\n" +
                 "    id,\n" +
                 "    phone_number,\n" +
                 "    firstname,\n" +
@@ -27,18 +19,26 @@ public class RegisterUserDAO {
                 ")\n" +
                 "VALUES (CAST(? AS UUID), ?, ?, ?, ?, ?)";
 
+//        String balSql = "INSERT INTO balances (\n" +
+//                "   id\n," +
+//                "phone_number\n" +
+//                ", amount)\n" +
+//                "VALUES(CAST(? AS UUID), ?, ?)";
+
+
         try (Connection conn = DatabaseConnection.getConnection();
-                PreparedStatement ps = conn.prepareStatement(sql))
+                PreparedStatement ps1 = conn.prepareStatement(userSql))
+
         {
 
-            ps.setString(1, String.valueOf(id));
-            ps.setString(2, phoneNumber);
-            ps.setString(3, firstname);
-            ps.setString(4, lastname);
-            ps.setString(5, email);
-            ps.setString(6, pinHash);
+            ps1.setString(1, String.valueOf(id));
+            ps1.setString(2, phoneNumber);
+            ps1.setString(3, firstname);
+            ps1.setString(4, lastname);
+            ps1.setString(5, email);
+            ps1.setString(6, pinHash);
 
-            int rows = ps.executeUpdate();
+            int rows = ps1.executeUpdate();
             return rows > 0;
 
         } catch (SQLException e) {
