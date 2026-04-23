@@ -1,4 +1,5 @@
 package gcash.app.view;
+import gcash.app.model.Users;
 import gcash.app.repository.LoginUserDAO;
 
 import java.sql.SQLException;
@@ -18,15 +19,15 @@ public class AuthLoginView {
         try {
             LoginUserDAO dao = new LoginUserDAO();
 
-            boolean isValid = dao.authenticateUser(phoneNumber, plainPin);
+            Users user = dao.authenticateUser(phoneNumber, plainPin);
 
-            if(!isValid){
+            if(user == null){
                 System.out.println("Login failed. Check your number/pin");
                 loginView();
             }
             else {
                 System.out.println("\n\nLogin successful!\n");
-                userDashboardView(phoneNumber);
+                userDashboardView(user);
 
             }
 

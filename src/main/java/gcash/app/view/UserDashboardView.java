@@ -1,18 +1,16 @@
 package gcash.app.view;
 import gcash.app.model.Users;
-import gcash.app.repository.DashboardUserDAO;
 import java.sql.SQLException;
 import static gcash.app.view.In.scanner;
 
 public class UserDashboardView {
-    public static void userDashboardView(String phoneNumber) throws SQLException {
+    public static void userDashboardView(Users user) throws SQLException {
 
-        Users user = DashboardUserDAO.dashboardUserDAO(phoneNumber);
         int choice = 0;
 
         System.out.println("| ========== Dashboard ========== |");
         if (user != null) {
-            System.out.println("Welcome " + user.getLastName() + ", " + user.getFirstName());
+            System.out.println("Welcome " +  user.getLastName() + ", " + user.getFirstName());
         }
         else{
             System.out.println("Di ko alarm :D .");

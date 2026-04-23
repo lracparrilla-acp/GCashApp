@@ -1,12 +1,13 @@
 package gcash.app.repository;
 import gcash.app.config.DatabaseConnection;
+import gcash.app.model.Users;
 import gcash.app.view.ProgressBar;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import java.sql.*;
 
 public class LoginUserDAO {
 
-    public boolean authenticateUser(String phoneNumber, String plainPin) {
+    public Users authenticateUser(String phoneNumber, String plainPin) {
         final BCryptPasswordEncoder encoder = new BCryptPasswordEncoder();
         String sql = "SELECT phone_number, firstname, lastname, email, pin_hash FROM users WHERE phone_number = ?";
 
@@ -20,7 +21,14 @@ public class LoginUserDAO {
                 if (rs.next()) {
                     String storedHash = rs.getString("pin_hash");
                     ProgressBar.progressBar();
-                    return encoder.matches(plainPin, storedHash);
+                    if(encoder.matches(plainPin,storedHash)){
+                        Users user = new Users();
+                        user.setPhoneNumber((rs.getString("phone_number")));
+                        user.setFirstName(rs.getString("firstname"));
+                        user.setLastName(rs.getString("lastname"));
+                        user.setEmail(rs.getString("email"));
+                        return user;
+                    }
                 }
             } catch (InterruptedException e) {
                 throw new RuntimeException(e);
@@ -30,6 +38,6 @@ public class LoginUserDAO {
             e.printStackTrace();
         }
 
-        return false;
+        return null;
     }
 }
