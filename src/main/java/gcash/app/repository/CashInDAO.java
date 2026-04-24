@@ -14,7 +14,6 @@ import java.sql.SQLException;
 import static gcash.app.view.In.scanner;
 
 public class CashInDAO {
-
     public void cashIn(Users user, Balance balance, BigDecimal amount) throws InterruptedException, SQLException {
 
         ProgressBar.progressBar();
@@ -51,7 +50,7 @@ public class CashInDAO {
                 if (rows > 0){
                     conn.commit();
                     System.out.println("Cash-in successful. New balance: ₱" + newBalance + "\n\n");
-                    balance.setAmount((BigDecimal)newBalance);
+                    balance.setAmount(newBalance);
                     scanner.nextLine();
                 }
                 else {

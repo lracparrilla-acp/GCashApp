@@ -10,7 +10,7 @@ public class ProgressBar {
                     + repeat("*", i / 2)
                     + repeat(" ", 50 - i / 2)
                     + "] " + i + "%");
-            Thread.sleep((long) (5 + Math.random() * 30));
+            Thread.sleep((long) (1 + Math.random() * 25));
         }
     }
 

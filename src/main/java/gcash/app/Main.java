@@ -11,7 +11,10 @@ public class Main {
         System.out.println();
         AuthMenuView.mainMenu();
 
-        //TODO: cash in, send money, view balance, transaction history
+        //TODO: send money, transaction history
+        //TODO: Implement In class/method to read inputs safely. Use Separate controller class
+        //TODO: Implement SOLID, DRY, SoC principles
+        //TODO: Implement MVC
 
     }
 }

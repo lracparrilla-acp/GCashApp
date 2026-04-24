@@ -3,6 +3,7 @@ import gcash.app.model.Balance;
 import gcash.app.model.Users;
 import gcash.app.repository.CashInDAO;
 import gcash.app.repository.CheckBalanceDAO;
+import gcash.app.repository.SendMoneyDAO;
 
 import java.math.BigDecimal;
 import java.sql.SQLException;
@@ -20,19 +21,23 @@ public class UserTransactionsView {
 
         System.out.println("How much would you like to cash in?");
         BigDecimal amount = scanner.nextBigDecimal();
-
         cashInDAO.cashIn(user, balance, amount);
 
-        //TODO: Implement In class/method to read inputs safely. Use Separate controller class
     }
 
-    public static void userSendMoneyView(Users user){
+    public static void userSendMoneyView(Users user) throws InterruptedException, SQLException {
+        Users userRecipient = new Users();
+        SendMoneyDAO sendMoneyDAO = new SendMoneyDAO();
+        String senderNumber = user.getPhoneNumber();
+        String recipientNumber;
         System.out.println("| =========== Send Money =========== |\n");
         System.out.print("How much would you like to send?: ");
-        double amount = scanner.nextDouble();
+        BigDecimal amount = scanner.nextBigDecimal();
+        scanner.nextLine();
         System.out.print("Enter the number of the recipient: ");
+        recipientNumber = scanner.nextLine();
+        sendMoneyDAO.sendMoney(senderNumber, recipientNumber, amount);
 
-        //TODO: Implement In class/method to read inputs safely. Use Separate controller class
     }
 
     public static void userBalanceView(Users user) throws InterruptedException, SQLException {
