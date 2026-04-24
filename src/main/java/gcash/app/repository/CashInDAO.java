@@ -51,7 +51,7 @@ public class CashInDAO {
                 if (rows > 0){
                     TransactionHistoryDAO transactionHistoryDAO = new TransactionHistoryDAO();
                     conn.commit();
-                    System.out.println("Cash-in successful. New balance: ₱" + newBalance + "\n\n");
+                    System.out.println("Cash-in successful. New balance: ₱" + newBalance);
                     balance.setAmount(newBalance);
                     transactionHistoryDAO.cashInTransactionHistory(user.getUuid(),amount);
                     scanner.nextLine();

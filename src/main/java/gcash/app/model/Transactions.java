@@ -15,7 +15,7 @@ public class Transactions {
     private final LocalDateTime nowTime = LocalDateTime.now();
     private final DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd hh:mm:ss");
 
-    private String refNum;
+    private String refNum = ReferenceNumberGenerator.generateReferenceNumber();
     private BigDecimal amount;
     private UUID senderUuid = senderUser.getUuid();
     private UUID recipientUuid = recipientUser.getUuid();
@@ -61,7 +61,7 @@ public class Transactions {
     }
 
     public String getRefNum() {
-        return ReferenceNumberGenerator.generateReferenceNumber();
+        return refNum;
     }
 
     public BigDecimal getAmount() {

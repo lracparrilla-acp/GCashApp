@@ -38,7 +38,7 @@ public class TransactionHistoryDAO {
 
             if (transactionRows > 0){
                 conn.commit();
-                System.out.println("Cash-in transaction recorded.");
+                System.out.println("Ref. #: " + transactions.getRefNum() + "\n\n");
             }
             else{
                 conn.rollback();
