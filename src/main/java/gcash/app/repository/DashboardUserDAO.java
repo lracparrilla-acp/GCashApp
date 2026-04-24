@@ -7,7 +7,7 @@ import gcash.app.config.DatabaseConnection;
 import gcash.app.model.Users;
 
 public class DashboardUserDAO {
-    public static Users dashboardUserDAO(String phoneNumber) throws SQLException {
+    public Users dashboardUserDAO(String phoneNumber) throws SQLException {
         String sql = "SELECT firstname, lastname FROM users WHERE phone_number = ?";
 
         try (Connection conn = DatabaseConnection.getConnection();

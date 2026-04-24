@@ -13,6 +13,7 @@ public class UserDashboardView {
             System.out.println("Welcome " +  user.getLastName() + ", " + user.getFirstName());
         }
         while (choice != 5) {
+
             System.out.print("1. Cash-in\n" +
                     "2. Send money\n" +
                     "3. View Balance\n" +
@@ -26,11 +27,11 @@ public class UserDashboardView {
                 switch (choice) {
                     case 1:
                         System.out.println("Cash-in");
-                        UserTransactionsView.userCashInView();
+                        UserTransactionsView.userCashInView(user);
                         break;
                     case 2:
                         System.out.println("Send money");
-                        UserTransactionsView.userSendMoneyView();
+                        UserTransactionsView.userSendMoneyView(user);
                         break;
                     case 3:
                         System.out.println("View Balance");
@@ -38,7 +39,7 @@ public class UserDashboardView {
                         break;
                     case 4:
                         System.out.println("View transaction history");
-                        UserTransactionsView.userTransactionHistoryView();
+                        UserTransactionsView.userTransactionHistoryView(user);
                         break;
                     case 5:
                         System.out.println("Exiting program...");
@@ -48,6 +49,8 @@ public class UserDashboardView {
                 }
             } catch (NumberFormatException e) {
                 System.out.println("Error: Invalid input. Please enter a number.");
+            } catch (InterruptedException e) {
+                throw new RuntimeException(e);
             }
         }
 

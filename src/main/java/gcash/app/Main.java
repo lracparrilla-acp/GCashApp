@@ -11,5 +11,7 @@ public class Main {
         System.out.println();
         AuthMenuView.mainMenu();
 
+        //TODO: cash in, send money, view balance, transaction history
+
     }
 }

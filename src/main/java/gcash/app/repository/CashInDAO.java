@@ -1,0 +1,64 @@
+package gcash.app.repository;
+
+import gcash.app.config.DatabaseConnection;
+import gcash.app.model.Balance;
+import gcash.app.model.Users;
+import gcash.app.view.ProgressBar;
+
+import java.math.BigDecimal;
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+
+import static gcash.app.view.In.scanner;
+
+public class CashInDAO {
+
+    public void cashIn(Users user, Balance balance, BigDecimal amount) throws InterruptedException, SQLException {
+
+        ProgressBar.progressBar();
+        System.out.println();
+
+        String getBalanceSql = "SELECT amount FROM balances WHERE user_id = ?";
+        String updateBalanceSql = "UPDATE balances SET amount = ? WHERE user_id = ?";
+
+        try (Connection conn = DatabaseConnection.getConnection()){
+            conn.setAutoCommit(false);
+
+            BigDecimal currentBalance = BigDecimal.ZERO;
+
+            try(PreparedStatement getStmt = conn.prepareStatement(getBalanceSql)){
+                getStmt.setObject(1, user.getUuid());
+                try (ResultSet rs = getStmt.executeQuery()){
+                    if (rs.next()){
+                        currentBalance = rs.getBigDecimal("amount");
+                    }
+                    else {
+                        conn.rollback();
+                        System.out.println("Cash in failed. Try again later!");
+                    }
+                }
+            }
+            BigDecimal newBalance = currentBalance.add(amount);
+
+            try (PreparedStatement updateStmt = conn.prepareStatement(updateBalanceSql)){
+                updateStmt.setBigDecimal(1, newBalance);
+                updateStmt.setObject(2, user.getUuid());
+
+                int rows = updateStmt.executeUpdate();
+
+                if (rows > 0){
+                    conn.commit();
+                    System.out.println("Cash-in successful. New balance: ₱" + newBalance + "\n\n");
+                    balance.setAmount((BigDecimal)newBalance);
+                    scanner.nextLine();
+                }
+                else {
+                    conn.rollback();
+                    System.out.println("Cash-in failed. Try again later!");
+                }
+            }
+        }
+    }
+}
