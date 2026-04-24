@@ -1,5 +1,6 @@
 package gcash.app.view;
 import gcash.app.model.Balance;
+import gcash.app.model.Transactions;
 import gcash.app.model.Users;
 import gcash.app.repository.CashInDAO;
 import gcash.app.repository.CheckBalanceDAO;
@@ -46,7 +47,10 @@ public class UserTransactionsView {
         checkBalanceDAO.checkBalance(user, balance);
     }
 
-    public static void userTransactionHistoryView(Users user){
+    public static void userTransactionHistoryView(Transactions transactions){
+        Users user = new Users();
+        user.getUuid();
+        System.out.println("Generating transactions");
 
     }
 }

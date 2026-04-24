@@ -32,6 +32,7 @@ public class CashInDAO {
                 try (ResultSet rs = getStmt.executeQuery()){
                     if (rs.next()){
                         currentBalance = rs.getBigDecimal("amount");
+
                     }
                     else {
                         conn.rollback();
@@ -48,9 +49,11 @@ public class CashInDAO {
                 int rows = updateStmt.executeUpdate();
 
                 if (rows > 0){
+                    TransactionHistoryDAO transactionHistoryDAO = new TransactionHistoryDAO();
                     conn.commit();
                     System.out.println("Cash-in successful. New balance: ₱" + newBalance + "\n\n");
                     balance.setAmount(newBalance);
+                    transactionHistoryDAO.cashInTransactionHistory(user.getUuid(),amount);
                     scanner.nextLine();
                 }
                 else {

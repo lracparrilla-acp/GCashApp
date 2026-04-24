@@ -11,6 +11,16 @@ public class Users {
     private String email;
     private char[] pinHash;
 
+    //constructor
+    public Users(UUID uuid, String phoneNumber, String firstName, String lastName, String email, String pinHash) {
+        this.uuid = uuid;
+        this.phoneNumber = phoneNumber;
+        this.firstName = firstName;
+        this.lastName = lastName;
+        this.email = email;
+        this.pinHash = pinHash.toCharArray();
+    }
+
     public Users(String firstName, String lastName) {
         this.firstName = firstName;
         this.lastName = lastName;
@@ -68,14 +78,6 @@ public class Users {
         this.pinHash = pinHash.toCharArray();
     }
 
-    //constructor
-    public Users(UUID uuid, String phoneNumber, String firstName, String lastName, String email, String pinHash) {
-        this.uuid = uuid;
-        this.phoneNumber = phoneNumber;
-        this.firstName = firstName;
-        this.lastName = lastName;
-        this.email = email;
-        this.pinHash = pinHash.toCharArray();
-    }
+
 
 }

@@ -1,4 +1,5 @@
 package gcash.app.view;
+import gcash.app.model.Transactions;
 import gcash.app.model.Users;
 import java.sql.SQLException;
 import static gcash.app.view.In.scanner;
@@ -39,7 +40,7 @@ public class UserDashboardView {
                         break;
                     case 4:
                         System.out.println("View transaction history");
-                        UserTransactionsView.userTransactionHistoryView(user);
+                        UserTransactionsView.userTransactionHistoryView(new Transactions());
                         break;
                     case 5:
                         System.out.println("Exiting program...");
