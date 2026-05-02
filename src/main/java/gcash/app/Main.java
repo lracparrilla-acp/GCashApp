@@ -10,6 +10,7 @@ public class Main {
 
         System.out.println("| ========== Mini DigiBank ========== |");
         System.out.println();
+        System.out.println("Hello world!");
         AuthMenuView.mainMenu();
 
         //TODO: transaction history
